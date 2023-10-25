@@ -1,0 +1,16 @@
+# Ignora la carpeta dist
+dist
+
+# Ignora la carpeta node_modules
+node_modules
+
+# Ignora todos los archivos de texto
+*.txt
+*.xlsm
+*.xlsx
+*.xls
+
+
+# Ignora los archivos relacionados a API keys
+.env
+environment.d.ts
