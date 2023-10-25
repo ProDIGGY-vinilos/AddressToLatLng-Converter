@@ -4,7 +4,7 @@ dotenv.config();
 
 export async function obtenerLatLong(
 	address: string
-): Promise<{ latitud: number; longitud: number }> {
+): Promise<{ latitud: number; longitud: number; location_type: string }> {
 	const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.APIKEY}`;
 	const response = await axios.get(url);
 	console.log(
@@ -12,7 +12,7 @@ export async function obtenerLatLong(
 	);
 	if (response.data.status !== "OK") {
 		if (response.data.status === "ZERO_RESULTS") {
-			return { latitud: 0, longitud: 0 };
+			return { latitud: 0, longitud: 0, location_type: "ZERO_RESULTS" };
 		} else {
 			throw new Error(
 				`Error al obtener latitud y longitud para ${address}`
@@ -20,6 +20,7 @@ export async function obtenerLatLong(
 		}
 	} else {
 		const { lat, lng } = response.data.results[0].geometry.location;
-		return { latitud: lat, longitud: lng };
+		const location_type = response.data.results[0].geometry.location_type;
+		return { latitud: lat, longitud: lng, location_type };
 	}
 }
