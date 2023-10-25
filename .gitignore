@@ -9,7 +9,7 @@ node_modules
 *.xlsm
 *.xlsx
 *.xls
-
+.vscode
 
 # Ignora los archivos relacionados a API keys
 .env
