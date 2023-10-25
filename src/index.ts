@@ -47,6 +47,8 @@ async function transformaAddres(address: Address[]) {
       address[i].lat = latitud;
       address[i].long = longitud;
     }
+    console.log(address[i]);
+    
   }
   return address;
 }

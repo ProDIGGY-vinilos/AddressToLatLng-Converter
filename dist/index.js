@@ -7,7 +7,7 @@ async function leerExcel(path) {
     return workbook;
 }
 async function cargarAddres() {
-    const workbook = await leerExcel('./CLIENT.xlsm');
+    const workbook = await leerExcel(process.env.EXCEL_URL);
     const worksheet = workbook.worksheets[0];
     worksheet.eachRow((row, rowNumber) => {
         if (rowNumber > 1) {
@@ -32,6 +32,7 @@ async function transformaAddres(address) {
             address[i].lat = latitud;
             address[i].long = longitud;
         }
+        console.log(address[i]);
     }
     return address;
 }
@@ -39,7 +40,7 @@ async function main() {
     console.log('Iniciando');
     await cargarAddres();
     await transformaAddres(address);
-    console.log(address);
+    console.log(address.length);
 }
 main();
 //# sourceMappingURL=index.js.map
